@@ -51,7 +51,7 @@ def review_to_sentences( review, tokenizer, remove_stopwords=False ):
     # list of sentences, where each sentence is a list of words
     #
     # 1. Use the NLTK tokenizer to split the paragraph into sentences
-    raw_sentences = tokenizer.tokenize(review.strip())
+    raw_sentences = tokenizer.tokenize(review.strip().decode("utf-8"))
     #
     # 2. Loop over each sentence
     sentences = []
@@ -71,7 +71,7 @@ sentences = []  # Initialize an empty list of sentences
 
 print "Parsing sentences from training set"
 for review in train["review"]:
-    sentences += review_to_sentences(review.decode("utf-8"), tokenizer)
+    sentences += review_to_sentences(review, tokenizer)
 
 print "Parsing sentences from unlabeled set"
 for review in unlabeled_train["review"]:
